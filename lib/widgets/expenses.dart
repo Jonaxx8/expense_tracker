@@ -1,3 +1,4 @@
+import 'package:app/new_expense.dart';
 import 'package:app/widgets/expenses_list/expenses_list.dart';
 import 'package:app/models/expense.dart';
 import 'package:flutter/material.dart';
@@ -25,13 +26,25 @@ class _ExpensesState extends State<Expenses> {
         category: Category.leisure),
   ];
 
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => NewExpense(onAddExpense: _addExpense),
+    );
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Student Expense Tracker'),  
-        actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.add)),
+      appBar: AppBar(title: const Text('Student Expense Tracker'), actions: [
+        IconButton(
+            onPressed: _openAddExpenseOverlay, icon: const Icon(Icons.add)),
       ]),
       body: Column(
         children: [
