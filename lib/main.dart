@@ -1,6 +1,5 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:expense_tracker/widgets/expenses.dart';
 
 var kColorScheme =
@@ -11,10 +10,6 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 );
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]).then((fn) {
     runApp(
       MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -27,7 +22,7 @@ void main() {
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               backgroundColor: kDarkColorScheme.primaryContainer,
-              foregroundColor: kDarkColorScheme.onPrimaryContainer,
+              foregroundColor: kDarkColorScheme.onPrimaryContainer, 
             ),
           ),
         ),
@@ -57,5 +52,4 @@ void main() {
         home: const Expenses(),
       ),
     );
-  });
 }
